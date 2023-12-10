@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Restricted Access Page</title>
+    <style>
+        iframe {
+            width: 100%;        /* 宽度设置为 100% */
+            height: 600px;      /* 高度设置为 600px */
+            border: none;       /* 没有边框 */
+        }
+    </style>
     <script type="text/javascript">
         // 当文档加载完毕时执行
         window.onload = function() {
@@ -20,6 +27,9 @@
                 if (referrerURL.hostname !== allowedReferer) {
                     // 如果不符合，则重定向到错误页面或显示错误消息
                     document.body.innerHTML = "<p>Access denied. You are not allowed to access this page directly.</p>";
+                } else {
+                    // 如果来源检查通过，则显示 iframe 内容
+                    document.getElementById('restricted-content').style.display = 'block';
                 }
             } catch (e) {
                 // 如果 URL 解析失败或其他错误
@@ -30,6 +40,9 @@
 </head>
 <body>
     <h1>Welcome to the Restricted Access Page</h1>
-    <!-- 页面内容 -->
+    <!-- 这里放置 iframe，初始时不显示 -->
+    <div id="restricted-content" style="display: none;">
+        <iframe src="https://yinyoushe.github.io/download/" frameborder="0"></iframe>
+    </div>
 </body>
 </html>
