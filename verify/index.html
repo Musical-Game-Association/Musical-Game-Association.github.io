@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restricted Access Page</title>
+    <script type="text/javascript">
+        // 当文档加载完毕时执行
+        window.onload = function() {
+            // 允许的来源网址
+            var allowedReferer = "www.yinyoushe.eu.org";
+
+            // 获取 referrer
+            var referrer = document.referrer;
+
+            try {
+                // 创建一个 URL 对象
+                var referrerURL = new URL(referrer);
+
+                // 检查 referrer 的主机部分是否符合允许的来源
+                if (referrerURL.hostname !== allowedReferer) {
+                    // 如果不符合，则重定向到错误页面或显示错误消息
+                    document.body.innerHTML = "<p>Access denied. You are not allowed to access this page directly.</p>";
+                }
+            } catch (e) {
+                // 如果 URL 解析失败或其他错误
+                document.body.innerHTML = "<p>Access denied. Invalid referrer.</p>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Restricted Access Page</h1>
+    <!-- 页面内容 -->
+</body>
+</html>
